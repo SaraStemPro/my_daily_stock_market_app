@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+
+
+{% block contenido %}
+
+<nav>
+    <ul class="nav">
+
+        <li><a href="/?email={{email}}">Inicio de sesión</a></li> |
+
+        <li><a class="currentLink" href="/contenido?email={{email}}">Acciones destacadas</a></li> |
+
+        <li><a href="/favoritos?email={{email}}">Favoritos</a></li> |
+
+        <li><a href="/salir?email={{email}}">Salir</a></li>
+    </ul>
+</nav>
+{{ super() }}
+<br>
+<div class="fecha">
+<h2>¡Bienvenid@ a la comunidad: My Daily Stock Market!</h2>
+<h2>Fecha de actualización del algoritmo: {{Fecha}}</h2>
+</div>
+<br>
+<div class="lista-fav">
+<form method="get" action="/favoritos">
+<input type="submit" value="VER LA LISTA DE FAVORITOS" class="btn-user">
+<input type="hidden" id="email" name="email" value={{email}}>
+</button></form>
+</div>
+<br>
+<div class="contenido">
+    <table class="table">
+        <tr>
+            <th class="tit-tabla bg-success text-white">País</th>
+            <th class="tit-tabla bg-success text-white">Nombre</th>
+            <th class="tit-tabla bg-success text-white">Ticker</th>
+            <th class="tit-tabla bg-success text-white">Cierre</th>
+            <th class="tit-tabla bg-success text-white">Soporte Stop</th>
+            <th class="tit-tabla bg-success text-white">Resistencia rota</th>
+            <th class="tit-tabla bg-success text-white">Primer objetivo</th>
+            <th class="tit-tabla bg-success text-white">Rentabilidad 1</th>
+            <th class="tit-tabla bg-success text-white">Segundo objetivo</th>
+            <th class="tit-tabla bg-success text-white">Rentabilidad 2</th>
+            <th class="tit-tabla bg-success text-white">Favoritos</th>
+            <th class="tit-tabla bg-success text-white">Ver histórico</th>
+        </tr>
+        {% for mov in datos %}
+        <tr>
+            <td class="text-left">{{ mov.País }}</td>
+            <td class="text-left">{{ mov.Nombre | replace("None", "")}}
+            {% if mov.Nombre == None %}
+            <p class="nodata">No hay datos</p>
+            {% endif %}
+            </td>
+
+            <td class="text-left">{{ mov.Ticker | replace("None", "")}}</td>
+            <td class="text-left">{{ mov.Cierre | replace("None", "")}}</td>
+            <td class="text-left">{{ mov.Soporte_Stop | replace("None", "")}}</td>
+            <td class="text-left">{{ mov.Resistencia_rota | replace("None", "")}}</td>
+            <td class="text-left">{{ mov.Objetivo_1 | replace("None", "")}}</td>
+            <td class="text-left">{{ mov.Rentabilidad_1 | replace("None", "")}}</td>
+            <td class="text-left">{{ mov.Objetivo_2 | replace("None", "")}}</td>
+            <td class="text-left">{{ mov.Rentabilidad_2 | replace("None", "")}}</td>
+
+            <td class="text-right">{{ mov.Favoritos }}
+
+                    {% if mov.Favorito == 0 and mov.Nombre != None %}
+                    <form method="get" action="/add_favoritos">
+                        <button type="submit" value="Favorito" class="btn-fav">
+                    
+                            <div class="icon-inner"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"
+                                    class="s-ion-icon">
+                                    <title>Añadir a favoritos</title>
+                                    <path d="M480,208H308L256,48,204,208H32l140,96L118,464,256,364,394,464,340,304Z"
+                                        style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"></path>
+                                </svg></div>
+                    
+                            <input type="hidden" id="favorito" name="favorito" value="{{ mov.Ticker }}">
+                            <input type="hidden" id="email" name="email" value={{email}}>
+
+                        </button>
+                    </form>
+                    {% elif mov.Nombre == None %}
+                    <!-- Si queremos dejar inhabilitado el botón en vez de eliminarlo, descomentamos las líneas de abajo. -->
+                    <!-- <form method="post" action="/add_favoritos">
+                        <button type="submit" value="Favorito" class="btn-fav" disabled>
+                            <div class="icon-inner"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"
+                                    class="s-ion-icon">
+                                    <title>Añadir a favoritos</title>
+                                    <path d="M480,208H308L256,48,204,208H32l140,96L118,464,256,364,394,464,340,304Z"
+                                        style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"></path>
+                                </svg></div
+                            <input type="hidden" id="favorito" name="favorito" value="{{ mov.Ticker }}">
+                        </button>
+                    </form> -->
+                        
+                    {% else %}
+                    <form method="get" action="/elim_favorito">
+                        <button type="submit" value="Favorito" class="btn-fav">
+                            <div class="icon-inner"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"
+                                    class="s-ion-icon">
+                                    <title>Quitar de favoritos</title>
+                                    <path
+                                        d="M394,480a16,16,0,0,1-9.39-3L256,383.76,127.39,477a16,16,0,0,1-24.55-18.08L153,310.35,23,221.2A16,16,0,0,1,32,192H192.38l48.4-148.95a16,16,0,0,1,30.44,0l48.4,149H480a16,16,0,0,1,9.05,29.2L359,310.35l50.13,148.53A16,16,0,0,1,394,480Z">
+                                    </path>
+                                </svg></div>
+                            <input type="hidden" id="no_favorito" name="no_favorito" value="{{ mov.Ticker }}">
+                            <input type="hidden" id="email" name="email" value={{email}}>
+                            </button>
+                        </form>
+                    {% endif %}
+                    </td>
+            
+            <td class="text-right">{{ mov.Histórico }}
+            {% if mov.Nombre != None %}
+                <form method="get" action="/api">
+                        <button type="submit" value="Consulta" class="btn-cons">
+                            <div class="icon-inner"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"
+                                    class="s-ion-icon">
+                                    <title>Consultar histórico</title>
+                                    <path d="M32,32V464a16,16,0,0,0,16,16H480"
+                                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                                    <rect x="96" y="224" width="80" height="192" rx="20" ry="20"
+                                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></rect>
+                                    <rect x="240" y="176" width="80" height="240" rx="20" ry="20"
+                                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></rect>
+                                    <rect x="383.64" y="112" width="80" height="304" rx="20" ry="20"
+                                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></rect>
+                                </svg></div>
+                            <input type="hidden" id="consultar" name="consultar" value="{{ mov.Ticker }}">
+                            <input type="hidden" id="email" name="email" value={{email}}>
+
+                        </button></form>
+            {% elif mov.Nombre == None %}
+            {% endif %}
+                </td>
+
+            
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock contenido %}

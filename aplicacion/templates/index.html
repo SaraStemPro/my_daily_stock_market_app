@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block contenido %}
+<nav>
+    <ul class="nav">
+
+        <li><a class="currentLink" href="/?email={{email}}">Inicio de sesión</a></li> |
+
+        <li><a href="/contenido?email={{email}}">Acciones destacadas</a></li> |
+
+        <li><a href="/favoritos?email={{email}}">Favoritos</a></li> |
+
+        <li><a href="/salir?email={{email}}">Salir</a></li>
+    </ul>
+</nav>
+{{ super() }}
+<br>
+<div class="texto">
+<h3>
+    Para acceder a la aplicación, por favor, escribe tu email de registro:
+</h3>
+</div>
+<br>
+<div class="form-group">
+<form method="get" action="/usuario">
+    <label for="email">Escribe tu email:</label>
+    <input type="text" id="email" name="email" />
+    <input class="envio" type="submit" value="Enviar" class="btn-user">
+</form>
+</div>
+{% endblock contenido %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<nav>
+    <ul class="nav">
+
+        <li><a href="/?email={{email}}">Inicio de sesión</a></li> |
+
+        <li><a href="/contenido?email={{email}}">Acciones destacadas</a></li> |
+
+        <li><a href="/favoritos?email={{email}}">Favoritos</a></li> |
+
+        <li><a href="/salir?email={{email}}">Salir</a></li>
+    </ul>
+</nav>
+{{ super() }}
+<br>
+<div class="texto">
+<h3>¿Seguro que deseas eliminar este valor como favorito? <br>
+    Recuerda que tu acción repercutirá al resto de usuarios de la comunidad:
+</h3>
+</div>
+    <div class="form-group">
+<form method="get" action="/elim_favorito_fav">
+        <select name="no_fav">
+            <option value="2">No</option>
+            <option value={{no_favorito_user}}>Sí</option>
+        </select>
+    <input class="envio" type="submit" value="Enviar" class="btn-user"></div>
+    <input type="hidden" id="email" name="email" value={{email}}>
+        </div>
+</form>
+
+
+{% endblock contenido %}

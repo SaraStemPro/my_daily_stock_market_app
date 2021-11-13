@@ -1,0 +1,279 @@
+.encabezado{
+  background-color:rgb(92, 81, 81);
+  color: white;
+  text-align:center;
+  margin-top:20px;
+  margin-bottom:20px;
+  text-align:center;
+  font-size: 50px;
+}
+
+.nav {
+  color: rgb(92, 81, 81);
+  height: 25px;
+  line-height: 25px;
+  margin-top:30px;
+  margin-bottom:20px;
+  display:flex;
+  justify-content: center;
+  font-size:16pt;
+}
+
+.nav a {
+  color: rgb(92, 81, 81);
+  padding:10px;
+}
+
+.nav .currentLink {
+   color: #cd0000;
+}
+
+.nav a:hover {
+  color: #cd0000 ;
+}
+
+body {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.table th {
+  text-align: center;
+  vertical-align: middle;
+  font-size:13pt;
+}
+
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table {
+  display:flex;
+  justify-content: center;
+}
+
+.favs {
+  background: #ffffff;
+  width: auto;
+}
+
+.lista {
+  background: #ffffff;
+  width: auto;
+}
+
+.btn-fav {
+  background-color:rgb(243, 240, 239);
+  display:inline-block;
+  text-align: center;
+  margin:0;
+  width: auto;
+  height:auto;
+}
+
+.texto-fav {
+  display:inline-block;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.texto {
+  display:inline-block;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.texto-cons {
+  display:flex;
+  justify-content: center;
+}
+
+.data {
+  display:inline-block;
+  text-align: center;
+  padding:10px;
+}
+
+.data th {
+  background-color:rgb(243, 240, 239);
+  padding:8px;
+}
+
+.lista-acc .btn-user {
+  background-color:white;
+  display:inline-block;
+  text-align: center;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  width: auto;
+  height:auto;
+  color:#cd0000;
+  font-size:14pt;
+}
+
+.lista-fav .btn-user {
+  background-color:white;
+  display:inline-block;
+  text-align: center;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  width: auto;
+  height:auto;
+  color:#cd0000;
+  font-size:14pt;
+}
+
+.icon-inner {
+  width: 30px;
+  height: 30px;
+}
+
+.btn-cons {
+  background-color:rgb(243, 240, 239);
+  display:inline-block;
+  text-align: center;
+  margin:0;
+  width: auto;
+  height:auto;
+}
+
+.btn-rent {
+  background-color:rgb(243, 240, 239);
+  display:inline-block;
+  text-align: center;
+  margin:0;
+  width: auto;
+  height:auto;
+}
+
+.atras .btn-atras {
+  background-color:white;
+  display:inline-block;
+  text-align: center;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  width: auto;
+  height:auto;
+  color:#cd0000;
+  font-size:14pt;
+}
+
+.nodata {
+  color:#cd0000;
+}
+
+.contenido {
+  display:flex;
+  justify-content: center;
+}
+
+.fecha {
+  font-weight: bold;
+  display:inline-block;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.consultas {
+  display:flex;
+  justify-content: center;
+}
+
+.consultas .con-hist {
+  display:inline-block;
+  margin-right: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+.consultas .charts .img {
+  display:inline-block;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.consultas .charts {
+  display:inline-block; 
+  text-align: center;
+  margin-left: 35px;
+}
+
+.rentabilidad {
+  display:flex;
+  justify-content: space-around;
+}
+
+.form-group {
+  display:flex;
+  justify-content: center;
+}
+
+.form-group .envio {
+  display:flex;
+  justify-content: center;
+  background-color:white;
+  display:inline-block;
+  text-align: center;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  width: auto;
+  height:auto;
+  color:#cd0000;
+  font-size:14pt;
+}
+
+.icono-error {
+  margin-right: 1rem;
+}
+
+.errores-flash {
+  color: #cd0000;
+  border: solid 2px #cd0000;
+  padding: 2rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.exito-flash {
+  background-color: rgba(0, 200, 0, .25);
+  color: #198754;
+  border: solid 2px #198754;
+  padding: 2rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  margin-top:35px;
+  margin-bottom: 35px;
+  margin-left:20px;
+  margin-right: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

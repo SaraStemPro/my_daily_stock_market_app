@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+
+
+{% block contenido %}
+<nav>
+    <ul class="nav">
+
+        <li><a href="/?email={{email}}">Inicio de sesión</a></li> |
+
+        <li><a href="/contenido?email={{email}}">Acciones destacadas</a></li> |
+
+        <li><a class="currentLink" href="/favoritos?email={{email}}">Favoritos</a></li> |
+
+        <li><a href="/salir?email={{email}}">Salir</a></li>
+    </ul>
+</nav>
+{{ super() }}
+<br>
+<div class="texto-fav">
+<h3>Actualmente hay {{contar}} valores como favoritos:</h3>
+<h5><li>En esta lista puedes ver los valores favoritos de la comunidad.</li>
+<li>Puedes hacer el seguimiento de los mismos y ver la posible rentabilidad 
+    que se habría obtenido desde que el valor se añadió a la lista. </li>
+    <li>También puedes eliminar o agregar los valores que quieras
+    pero recuerda compartirlo con el resto del grupo.</li>
+</h5></div>
+<br>
+<div class="lista-acc">
+<form method="get" action="/contenido">
+    <input type="submit" value="VOLVER A LA LISTA DE ACCIONES" class="btn-user">
+    <input type="hidden" id="email" name="email" value={{email}}>
+</div>
+</form>
+<br>
+<div class="contenido">
+<table class="table">
+    <tr>
+        <th class="tit-tabla bg-success text-white">Incorporación</th>
+        <th class="tit-tabla bg-success text-white">País</th>
+        <th class="tit-tabla bg-success text-white">Nombre</th>
+        <th class="tit-tabla bg-success text-white">Ticker</th>
+        <th class="tit-tabla bg-success text-white">Soporte Stop</th>
+        <th class="tit-tabla bg-success text-white">Objetivo 1</th>
+        <th class="tit-tabla bg-success text-white">Objetivo 2</th>
+        <th class="tit-tabla bg-success text-white">Ver histórico</th>
+        <th class="tit-tabla bg-success text-white">Rentabilidad</th>
+        <th class="tit-tabla bg-success text-white">Eliminar</th>
+        
+
+    </tr>
+    {% for mov in favoritos %}
+    <tr>
+        <td class="text-left">{{ mov.Fecha }}</td>
+        <td class="text-left">{{ mov.País }}</td>
+        <td class="text-left">{{ mov.Nombre }}</td>
+        <td class="text-left">{{ mov.name }}</td>
+        <td class="text-left">{{ mov.Soporte_Stop }}</td>
+        <td class="text-left">{{ mov.Objetivo_1 }}</td>
+        <td class="text-left">{{ mov.Objetivo_2 }}</td>
+        
+        <td class="text-right">{{ mov.Histórico }}
+            <form method="get" action="/api">
+                <button type="submit" value="Consulta" class="btn-cons">
+                    <div class="icon-inner"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"
+                            class="s-ion-icon">
+                            <title>Consultar histórico</title>
+                            <path d="M32,32V464a16,16,0,0,0,16,16H480"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                            </path>
+                            <rect x="96" y="224" width="80" height="192" rx="20" ry="20"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                            </rect>
+                            <rect x="240" y="176" width="80" height="240" rx="20" ry="20"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                            </rect>
+                            <rect x="383.64" y="112" width="80" height="304" rx="20" ry="20"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                            </rect>
+                        </svg></div>
+                    <input type="hidden" id="consultar" name="consultar" value="{{ mov.name }}">
+                    <input type="hidden" id="email" name="email" value={{email}}>
+
+                </button>
+            </form>
+
+        </td>
+        <td class="text-left">{{ mov.Rentabilidad }}
+            <div class="rentabilidad">
+        <form method="get" action="/rentabilidad">
+            <button type="submit" value="Consulta" class="btn-rent">
+                <div class="icon-inner"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"
+                        class="s-ion-icon">
+                        <title>Ver rentabilidad</title>
+                        <polyline points="352 144 464 144 464 256"
+                            style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></polyline>
+                        <path d="M48,368,169.37,246.63a32,32,0,0,1,45.26,0l50.74,50.74a32,32,0,0,0,45.26,0L448,160"
+                            style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                    </svg></div>
+            <input type="hidden" name="fecha_rent" value={{mov.Fecha}}>
+            <input type="hidden" name="pais_rent" value={{mov.País}}>
+            <input type="hidden" name="name_rent" value={{mov.name}}>
+            <input type="hidden" id="email" name="email" value={{email}}>
+
+        </button>
+        {%if mov.name == name_rent%}
+            {{rentab}}{{" %"}}
+        {%endif%}
+        </form>
+
+    </td>
+        </div>
+        <td class="text-left">{{ mov.Eliminar }}
+            <form method="get" action="/elim_fav_user">
+                <button type="submit" value="Favorito" class="btn-fav">
+        
+                    <div class="icon-inner"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"
+                            class="s-ion-icon">
+                            <title>Eliminar de favoritos</title>
+                            <path d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                            </path>
+                            <line x1="80" y1="112" x2="432" y2="112"
+                                style="stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"></line>
+                            <path d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                            </path>
+                            <line x1="256" y1="176" x2="256" y2="400"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                            </line>
+                            <line x1="184" y1="176" x2="192" y2="400"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                            </line>
+                            <line x1="328" y1="176" x2="320" y2="400"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                            </line>
+                        </svg></div>
+        
+                    <input type="hidden" id="no_favorito" name="no_favorito" value="{{ mov.name }}">
+                    <input type="hidden" id="email" name="email" value={{email}}>
+
+        
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+
+{% endblock contenido %}

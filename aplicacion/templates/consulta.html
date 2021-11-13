@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+
+{% block contenido %}
+<nav>
+    <ul class="nav">
+
+        <li><a href="/?email={{email}}">Inicio de sesión</a></li> |
+
+        <li><a href="/contenido?email={{email}}">Acciones destacadas</a></li> |
+
+        <li><a href="/favoritos?email={{email}}">Favoritos</a></li> |
+
+        <li><a href="/salir?email={{email}}">Salir</a></li>
+    </ul>
+</nav>
+{{ super() }}
+<br>
+<div class="atras">
+    <form method="get" action=/favoritos>
+        <input type="submit" value="IR A FAVORITOS" class="btn-atras">
+        <input type="hidden" id="email" name="email" value={{email}}>
+    </form>
+</div>
+<div class="texto-cons">
+    <h2>- {{consulta}} -</h2>
+</div>
+<br>
+<br>
+<div class="consultas">
+    <div class="cons-hist">
+        {% for mov in hist %}
+        {{ mov|safe }}
+        {% endfor %}
+    </div>
+    <div class="charts">
+        <h4>Aquí puedes ver su tendencia en el último año:</h4>
+        <img class="img" src="{{url_for('static', filename='CHARTS/'+grafico)}}" alt="grafico" width="600"
+            height="450" />
+    </div>
+</div>
+
+{% endblock contenido %}
