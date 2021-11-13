@@ -1,5 +1,5 @@
 FLASK_APP="poner aquí el nombre de la aplicación"
-FLASK_ENV=development | production
+FLASK_ENV="poner aquí entorno developtment"
 ADMIN_EMAIL="poner aquí el email del administrador"
 ADMIN_PASSWORD="poner aquí la contraseña del administrador"
 SERVER_EMAIL="poner aquí el servidor de email"
