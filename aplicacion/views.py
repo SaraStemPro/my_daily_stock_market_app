@@ -56,7 +56,7 @@ def usuario():
         sent_from = email_admin
         to = [request.args.get('email')]
         subject = 'Clave de acceso'
-        body = 'Tu clave de acceso es: {}'.format(clave_acceso)
+        body = 'Tu clave de acceso a la app My Daily Stock Market es: {}'.format(clave_acceso)
         email_text = """\
             From: %s
             To: %s
@@ -85,21 +85,22 @@ def listado_contenido():
     email = request.args.get('email')
     usuario = comprobar_usuario()
     if usuario == True:
-        if request.args.get('users'):
+        if request.args.get('contraseña'):
             if request.args.get('contraseña') == clave_acceso:
                 db.conectar_sqlite(
                     'UPDATE acciones SET Fecha = "{}"'.format(hoy))
                 datos = db.consultarConSQL(
                     'SELECT * FROM acciones')
-                return render_template("contenido.html", movi=datos, Fecha=hoy)
+                return render_template("contenido.html", datos=datos, Fecha=hoy, email=email)
             else:
                 flash(email, "error")
-                flash("No estás autorizad@ para interactuar con esta aplicación. Por favor, contacta con el administrador para registrarte formalmente.", "error")
+                flash("Tu contraseña es incorrecta, inténtalo de nuevo.", "error")
                 return render_template("index.html")
         else:
-            db.conectar_sqlite('UPDATE acciones SET Fecha = "{}"'.format(hoy))
+            db.conectar_sqlite(
+                    'UPDATE acciones SET Fecha = "{}"'.format(hoy))
             datos = db.consultarConSQL(
-                'SELECT * FROM acciones')
+                    'SELECT * FROM acciones')
             return render_template("contenido.html", datos=datos, Fecha=hoy, email=email)
     else:
         return redirect(url_for("index", email=email))
