@@ -105,9 +105,13 @@ def listado_contenido():
                 datos = db.consultarConSQL(
                         'SELECT * FROM acciones')
                 return render_template("contenido.html", datos=datos, Fecha=hoy, email=email)
+            else:
+                flash(email, "error")
+                flash("Tu contraseña es incorrecta, inténtalo de nuevo.", "error")
+                return render_template("index.html")
     else:
         return redirect(url_for("index", email=email))
-
+    
 
 @app.route('/add_favoritos', methods=['GET', 'POST'])
 def lista_favoritos():
@@ -271,12 +275,8 @@ def alpha():
 
 @app.route('/salir')
 def salir():
-    email = request.args.get('email')
-    users = db.consultarConSQL('SELECT user_email FROM users')
-    emails = []
-    for user in users:
-        emails.append(user['user_email'])
-    if email in emails:
+    usuario = comprobar_usuario()
+    if usuario == True:
         session.clear()
         flash("Has salido de la sesión correctamente.", "exito")
     else:

@@ -1,4 +1,8 @@
-# APLICACION_KEEPCODING
+# APLICACION_KEEPCODING: My Daily Stock Market
+###### Por Sara Díaz - Proyecto Bootcamp Cero KeepCoding
+
+
+###
 
 
 Debemos tener descargado git y python3 en nuestro ordenador.
@@ -11,7 +15,7 @@ cd APLICACION_KEEPCODING
 
 Una vez dentro, desplegamos un entorno virtual: 
 python -m venv env
-Y lo activamos:fl
+Y lo activamos:
 WINDOWS: env\Scripts\activate.bat
 MAC: source ./env/bin/activate
 
