@@ -16,24 +16,34 @@ Una vez descargados, abrimos nuestro terminal, y seguimos los siguientes pasos:
 1. Entramos en la carpeta donde vamos a alojar el proyecto y escribimos el siguiente código: 
 
 `git clone https://github.com/sdiamar/my_daily_stock_market_app_keepcoding.git`
+
 2. Entramos en la carpeta especificada:
 
 `cd my_daily_stock_market_app_keepcoding`
+
 3. Una vez dentro, desplegamos un entorno virtual del siguiente modo: 
 
 `python -m venv env`
+
 Si no funciona, probamos con:
 
 `python3 -m venv env`
+
 4. Activamos el entorno virtual "env":
 
-En Windows: `env\Scripts\activate.bat`
-En Mac: `source ./env/bin/activate`
-Nos fijaremos que estamos dentro del entorno porque aparece __(env)__ en la línea de comandos.
-5. Podemos lanzar la aplicación a Visual Studio Code del siguiente modo: 
+En Windows: 
 
-`code .`
-Aunque también podemos continuar en el terminal. 
+`env\Scripts\activate.bat`
+
+En Mac: 
+
+`source ./env/bin/activate`
+
+Nos fijaremos que estamos dentro del entorno porque aparece __(env)__ en la línea de comandos.
+
+5. Podemos lanzar la aplicación a Visual Studio Code del siguiente modo (aunque también podemos continuar en el terminal): 
+
+`code .` 
 
 ## Instalación de dependencias para el proyecto
 
@@ -41,6 +51,7 @@ Completados los pasos anteriores, debemos instalar las dependencias para que la 
 Esto lo hacemos con la ayuda del archivo __"requirements"__.
 
 Para su instalación, escribimos en el terminal dentro del entorno (ya sea en Visual Studio Code o en el terminal del sistema): 
+
 `pip install -r requirements.txt`
 
 ## Archivo .env con los parámetros a rellenar previamente
@@ -54,9 +65,9 @@ Este archivo es fundamental para la correcta ejecución de nuestra aplicación, 
 - __SERVER_EMAIL__: Aquí debemos indicar el servidor de nuestro email.
 
 Si no sabes o no puedes configurar el servidor de correo, hemos generado un email y password de prueba para que puedas comprobar el funcionamiento de la app. Éstos son:
-__ADMIN_EMAIL__=prueba@inversia500.com
-__ADMIN_PASSWORD__=niknyz-wudNeq-viwwe0
-__SERVER_EMAIL__=mail.inversia500.com
+- __ADMIN_EMAIL__=prueba@inversia500.com
+- __ADMIN_PASSWORD__=niknyz-wudNeq-viwwe0
+- __SERVER_EMAIL__=mail.inversia500.com
 
 Este email se dará de baja a finales del mes de _novimebre 2021_.
 
@@ -78,6 +89,7 @@ Por tanto, en el archivo .env escribiremos:
 
 Ahora sí lo tenemos todo preparado para poder ejecutar nuestra aplicación. 
 Para ello escribimos en nuestro terminal: 
+
 `flask run`
 
 Este comando ejecuta nuestra apliación en la dirección local: 
@@ -117,4 +129,5 @@ Agradecer también a mi familia, mi marido y el bebé que está creciendo dentro
 Ahora el siguiente paso es avanzar en la seguridad de la app para poder lanzarla al público dentro de mi blog. Así que sigue quedando trabajo por delante con mucha motivación.
 
 __Espero que os guste, ¡gracias!__
+
 __Sara Díaz__
