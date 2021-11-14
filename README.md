@@ -1,39 +1,114 @@
-# APLICACION_KEEPCODING: My Daily Stock Market
+# MY DAILY STOCK MARKET: APLICACION BOOTCAMP KEEPCODING
 ###### Por Sara Díaz - Proyecto Bootcamp Cero KeepCoding
 
+> _De pequeños comienzos, surgen grandes cosas._ - Anónimo
 
-###
+## Instalación previa
+
+Para iniciar la aplicación, debemos tener descargado git y python3 en nuestro ordenador. Los podemos encontrar en:
+- __Git__: https://git-scm.com/downloads
+- __Python3__: [enlacehttps://www.python.org/downloads/
+
+## Terminal
+
+Una vez descargado, abrimos nuestro terminal, y seguimos los siguientes pasos:
+
+1. Entramos en la carpeta donde vamos a alojar el proyecto y escribimos el siguiente código: 
+`git clone https://github.com/sdiamar/my_daily_stock_market_app_keepcoding.git`
+2. Entramos en la carpeta especificada:
+`cd my_daily_stock_market_app_keepcoding`
+3. Una vez dentro, desplegamos un entorno virtual del siguiente modo: 
+`python -m venv env`
+Si no funciona, probamos con:
+`python3 -m venv env`
+4. Activamos el entorno virtual "env":
+En Windows: `env\Scripts\activate.bat`
+En Mac: `source ./env/bin/activate`
+Nos fijaremos que estamos dentro del entorno porque aparece __(env)__ en la línea de comandos.
+5. Podemos lanzar la aplicación a Visual Studio Code del siguiente modo: 
+`code .`
+Aunque también podemos continuar en el terminal. 
+
+## Instalación de dependencias para el proyecto
+
+Completados los pasos anteriores, debemos instalar las dependencias para que la aplicación funcione correctamente.
+Esto lo hacemos con la ayuda del archivo __"requirements"__.
+
+Para su instalación, escribimos en el terminal dentro del entorno (ya sea en Visual Studio Code o en el terminal del sistema): 
+`pip install -r requirements.txt`
+
+## Archivo .env con los parámetros a rellenar previamente
+
+Este archivo es fundamental para la correcta ejecución de nuestra aplicación, ya que tendrá todos los datos iniciales necesarios. Hemos dejado un archivo llamado __"env_template"__ con un ejemplo de lo que debemos escribir en él. El archivo .env se puede generar como un archivo del bloc de notas donde podamos escribir lo necesario. En concreto, son los siguientes parámetros:
+
+#### 1. Mailing
+
+- __ADMIN_EMAIL__: Aquí debemos poner nuestro email, desde donde queremos que se envíe la clave de acceso al usuario.
+- __ADMIN_PASSWORD__: Aquí debemos escribir la contraseña de nuestro email para que la librería pueda acceder al servicio de mailing.
+- __SERVER_EMAIL__: Aquí debemos indicar el servidor de nuestro email.
+
+Si no sabes o no puedes configurar el servidor de correo, hemos generado un email y password de prueba para que puedas comprobar el funcionamiento de la app. Éstos son:
+__ADMIN_EMAIL__=prueba@inversia500.com
+__ADMIN_PASSWORD__=niknyz-wudNeq-viwwe0
+__SERVER_EMAIL__=mail.inversia500.com
+
+Este email se dará de baja a finales del mes de _novimebre 2021_.
+
+#### 2. API KEY Alpha Vantage
+Para conectar la app a datos históricos de acciones, hemos generado una API KEY totalmente gratuita con el proveedor de datos __Alpha Vantage__. Esta API puedes solicitarla en el siguiente enlace:
+https://www.alphavantage.co/support/#support
+
+- __API_ALPHA__: Ponemos aquí la API KEY generada en Alpha Vantage
+
+#### 3. Parámentros de FLASK
+
+Flask es un framework que hará que nuestra aplicación funcione. Flask necesita conocer cuál es el __nombre de nuestra aplicación y nuestro entorno de trabajo__. En nuestro caso, se lo decimos al sistema a través del arhivo .env. Esto se puede hacer así gracias a que hemos descargado (anteriormente en requirements) el paquete _python-dotenv_ que lee nuestro archivo .env directamente con lo que necesita para ejecutar la aplicación.
+Por tanto, en el archivo .env escribiremos:
+
+- __FLASK_APP__: Aquí ponemos el nombre de la aplicación (en este caso "run")
+- __FLASK_ENV__: Aquí podemos poner el entorno de desarrollo o producción (development | production)
+
+## Ejecución de la aplicación con FLASK
+
+Ahora sí lo tenemos todo preparado para poder ejecutar nuestra aplicación. 
+Para ello escribimos en nuestro terminal: 
+`flask run`
+
+Este comando ejecuta nuestra apliación en la dirección local: 
+http://127.0.0.1:5000/
+
+Ingresando dentro de dicho enlace, podrás interactuar con la app.
+__¡Felicidades! Ya puedes gestionar la app My Daily Stock Market.__
+
+## Funcionamiento de la aplicación
+
+Una vez dentro el funcionamiento de la app será el siguiente:
+
+1. La url anterior nos llevará a la página: __"Inicio de sesión"__, donde debemos introducir nuestro email (en estos momentos, solo hay dos usuarios registrados en la base de datos, mi profesor Tony y yo :)).
+2. Una vez comprobado que el email está registrado, se le envía al usuario una __clave__ a su email (de ahí la configuración del servidor de mailing que hicimos antes). Esta clave será la que tenga que introducir para poder acceder al sistema. Veremos que si no inroducimos clave o la introducimos incorrectamente, nos llevará de vuelta a la página de inicio de sesión para que volvamos a escribir nuestro email y repetir el proceso 1 y 2 hasta que la clave sea la correcta, es decir, que sea la que se llega por email.
+***NOTA IMPORTANTE***: Comprueba el correo no deseado si no recibes la clave de tu bandeja de entrada.
+3. Una vez comprobado que el usuario, por tanto, está registrado y que la clave es correcta, entramos, por defecto, en la página __"Lista de acciones"__. Aquí disponemos de la lista de acciones que cada día muestra mi algoritmo de inversión. Este algoritmo no se aporta en esta práctica, y se basa en seguir valores de Bolsa que estén rompiendo la zona de resistencia para empezar una posible tendencia alcista.
+4. La __navegación__ por la web es sencilla. A partir de este punto podemos interactuar con la aplicación como queramos, en concreto:
+#### Lista de acciones:
+- Podemos __marcar los valores como favoritos__ si queremos hacer un seguimiento de los mismos. Hay que recordar, que esta app es multiusuario y se compartirá con todos los usuarios registrados en la comunidad.
+- Podemos ver la tabla de __datos históricos__ de los valores (gracias a la API de Alpha Vantage), si disponemos de sus datos. Además, podremos ver también el __gráfico__ con la tendencia del valor en el último año.
+
+#### Favoritos
+- También podemos ver la tabla de __datos históricos__ de los valores (gracias a la API de Alpha Vantage), si disponemos de sus datos y ver el __gráfico__ con la tendencia del valor en el último año.
+- Podemos consultar la __rentabilidad__ que llevaría el valor si se hubiese comprado en la fecha en la que se añadió a la lista de favoritos. He dejado algunos favoritos antiguos marcados para poder hacer este seguimiento.
+- Por último, en esta página podemos __eliminar__ cualquier valor si no queremos hacerle el seguimiento (esto nos llevará a otra página de confirmación puesto que dicha acción repercutirá en el resto de usuarios de la comunidad, ya que desaparecerá para todos).
+
+#### Salir
+Para salir de la aplicación, dolo debemos entrar en esta página. Esto nos __cerrará la sesión__ automáticamente, y nos reenviará a la página de "Inicio de sesión", teniendo que volver a empezar si queremos interactuar de nuevo con la app.
+
+Con esto finaliza este Readme.
 
 
-Debemos tener descargado git y python3 en nuestro ordenador.
-Git: https://git-scm.com/downloads
-Python3: https://www.python.org/downloads/
-Una vez hecho esto, abrimos nuestro terminal, entramos en la carpeta donde vamos a alojar el proyecto y escribimos:
-git clone https://github.com/sdiamar/APLICACION_KEEPCODING.git
-Ahora entramos en la carpeta especificada:
-cd APLICACION_KEEPCODING
+## Agradecimientos
+No es algo común escribir esto aquí, pero como es el único documento que entregamos, no me gustaría terminar sin agradecer a los profesores de KeepCoding, Tony y Ramón, que me han ayudado a la realización de este proyecto, sobre todo Tony. Han sido muchas horas dedicadas y sin duda, el apoyo de este gran profesorado ha sido clave, con unos conocimientos extraordinarios.
+Agradecer también a mi familia, mi marido y el bebé que está creciendo dentro de mi, porque me lo han puesto muy fácil y me han apoyado en todo. Sin duda el amor es lo más bonito que nos llevamos.
 
-Una vez dentro, desplegamos un entorno virtual: 
-python -m venv env
-Y lo activamos:
-WINDOWS: env\Scripts\activate.bat
-MAC: source ./env/bin/activate
+Ahora el siguiente paso es avanzar en la seguridad de la app para poder lanzarla al público dentro de mi blog. Así que sigue quedando trabajo por delante con mucha motivación.
 
-Nos fijaremos que estamos dentro del entorno porque aparece (env) en la línea de comandos.
-
-Podemos lanzar la aplicación a Visual Studio Code así: code .
-O podemos seguir en el terminal. En cualquier caso, lo primero que hay que hacer es instalar las dependencias del archivo requirements.
-Para ello, escribirmos en el terminal dentro del entorno (ya sea en Visual Studio Code o en el terminal del sistema): pip install -r requirements.txt
-Esto instalará todos los paquetes necesarios para que la aplicación funcione.
-
-No tenemos que decirle al sistema cuál es nuestra aplicación y cuál nuestro entorno de Flask porque el paquete python-dotenv lee nuestro archivo .env, donde hemos dejado las instrucciones para que lo rellenes. Así que ahora hay que hacer un nuevo archivo .env donde daremos las instrucciones que hemos aportado en el archivo env_template. Se puede hacer con un bloc de notas.
-En concreto, los parámetros que debes indicar son:
-Para configurar el servidor de correo, deberás hacerlo con tu proveedor. En caso de tener problemas, he generado una dirección de prueba para poder probar el servicio de email, ya que si no, no se podrá acceder a la aplicación:
-admin_email = prueba@inversia500.com
-password_email = niknyz-wudNeq-viwwe0
-server_email = mail.inversia500.com
-Este email de dará de baja a finales de mes.
-Una vez que tenemos el archivo terminado, corremos en nuestro terminal la aplicación con: flask run
-
-Ello ejecuta nuestra apliación en la dirección local: http://127.0.0.1:5000/
-Felicidades, ya puedes gestionar My Daily Stock Market.
+__Espero que os guste, ¡gracias!__
+__Sara Díaz__
