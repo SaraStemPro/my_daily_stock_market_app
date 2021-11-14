@@ -1,31 +1,37 @@
-# MY DAILY STOCK MARKET: APLICACION BOOTCAMP KEEPCODING
+# MY DAILY STOCK MARKET
 ###### Por Sara Díaz - Proyecto Bootcamp Cero KeepCoding
 
 > _De pequeños comienzos, surgen grandes cosas._ - Anónimo
 
 ## Instalación previa
 
-Para iniciar la aplicación, debemos tener descargado git y python3 en nuestro ordenador. Los podemos encontrar en:
+Para iniciar este proyecto, debemos tener descargado "Git" y "Python3" en nuestro ordenador. Los podemos encontrar en:
 - __Git__: https://git-scm.com/downloads
-- __Python3__: [enlacehttps://www.python.org/downloads/
+- __Python3__: https://www.python.org/downloads/
 
 ## Terminal
 
-Una vez descargado, abrimos nuestro terminal, y seguimos los siguientes pasos:
+Una vez descargados, abrimos nuestro terminal, y seguimos los siguientes pasos:
 
 1. Entramos en la carpeta donde vamos a alojar el proyecto y escribimos el siguiente código: 
+
 `git clone https://github.com/sdiamar/my_daily_stock_market_app_keepcoding.git`
 2. Entramos en la carpeta especificada:
+
 `cd my_daily_stock_market_app_keepcoding`
 3. Una vez dentro, desplegamos un entorno virtual del siguiente modo: 
+
 `python -m venv env`
 Si no funciona, probamos con:
+
 `python3 -m venv env`
 4. Activamos el entorno virtual "env":
+
 En Windows: `env\Scripts\activate.bat`
 En Mac: `source ./env/bin/activate`
 Nos fijaremos que estamos dentro del entorno porque aparece __(env)__ en la línea de comandos.
 5. Podemos lanzar la aplicación a Visual Studio Code del siguiente modo: 
+
 `code .`
 Aunque también podemos continuar en el terminal. 
 
