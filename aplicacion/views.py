@@ -37,10 +37,24 @@ def comprobar_usuario():
     else:
         return False
 
+def comprobar_usuario_clave():
+    email = request.args.get('email')
+    users = db.consultarConSQL('SELECT user_email FROM users')
+    clave = db.consultarConSQL('SELECT clave FROM users where user_email="{}"'.format(email))
+    emails = []
+    for user in users:
+        emails.append(user['user_email'])
+    for i in clave:
+        clave_ = i['clave']
+    if email in emails and clave_ != "0":
+        return True
+    else:
+        return False
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     email = request.args.get('email')
-    usuario = comprobar_usuario()
+    usuario = comprobar_usuario_clave()
     if usuario == True:
         flash("Ya has iniciado sesión.", "exito")
     else:
@@ -83,42 +97,40 @@ def usuario():
 @app.route('/contenido',  methods=['GET', 'POST'])
 def listado_contenido():
     email = request.args.get('email')
-    usuario = comprobar_usuario()
-    if usuario == True:
-        if request.args.get('contraseña'):
+    if request.args.get('contraseña'):
+        usuario = comprobar_usuario()
+        if usuario == True:
             if request.args.get('contraseña') == clave_acceso:
                 db.conectar_sqlite(
                     'UPDATE acciones SET Fecha = "{}"'.format(hoy))
                 datos = db.consultarConSQL(
                     'SELECT * FROM acciones')
-                return render_template("contenido.html", datos=datos, Fecha=hoy, email=email)
-            else:
-                flash(email, "error")
-                flash("Tu contraseña es incorrecta, inténtalo de nuevo.", "error")
-                return render_template("index.html")
-        else:
-            email = request.args.get('email')
-            usuario = comprobar_usuario()
-            if usuario == True:
                 db.conectar_sqlite(
-                        'UPDATE acciones SET Fecha = "{}"'.format(hoy))
-                datos = db.consultarConSQL(
-                        'SELECT * FROM acciones')
+                    'UPDATE users SET clave = "{}" WHERE user_email ="{}"'.format(clave_acceso,email))
                 return render_template("contenido.html", datos=datos, Fecha=hoy, email=email)
             else:
                 flash(email, "error")
                 flash("Tu contraseña es incorrecta, inténtalo de nuevo.", "error")
                 return render_template("index.html")
     else:
-        return redirect(url_for("index", email=email))
+        email = request.args.get('email')
+        usuario_clave = comprobar_usuario_clave()
+        if usuario_clave == True:
+            db.conectar_sqlite(
+                    'UPDATE acciones SET Fecha = "{}"'.format(hoy))
+            datos = db.consultarConSQL(
+                    'SELECT * FROM acciones')
+            return render_template("contenido.html", datos=datos, Fecha=hoy, email=email)
+        else:
+            return render_template("index.html")
     
 
 @app.route('/add_favoritos', methods=['GET', 'POST'])
 def lista_favoritos():
     favorito = request.args.get('favorito')
     email = request.args.get('email')
-    usuario = comprobar_usuario()
-    if usuario == True:
+    usuario_clave = comprobar_usuario_clave()
+    if usuario_clave == True:
         datos = db.consultarConSQL('SELECT name FROM favoritos')
         if not datos:
             db.conectar_sqlite(
@@ -142,8 +154,8 @@ def lista_favoritos():
 def elimina_fav():
     no_favorito = request.args.get('no_favorito')
     email = request.args.get('email')
-    usuario = comprobar_usuario()
-    if usuario == True:
+    usuario_clave = comprobar_usuario_clave()
+    if usuario_clave == True:
         db.conectar_sqlite(
             'DELETE FROM favoritos WHERE name="{}"'.format(no_favorito))
         db.conectar_sqlite(
@@ -158,8 +170,8 @@ def elimina_fav():
 @app.route('/elim_fav_user', methods=['GET', 'POST'])
 def elimina_fav_user():
     email = request.args.get('email')
-    usuario = comprobar_usuario()
-    if usuario == True:
+    usuario_clave = comprobar_usuario_clave()
+    if usuario_clave == True:
         no_favorito_user = request.args.get('no_favorito')
     return render_template("elim_fav_user.html", no_favorito_user=no_favorito_user, email=email)
 
@@ -167,8 +179,8 @@ def elimina_fav_user():
 @app.route('/elim_favorito_fav', methods=['GET', 'POST'])
 def elimina_fav_2():
     email = request.args.get('email')
-    usuario = comprobar_usuario()
-    if usuario == True:
+    usuario_clave = comprobar_usuario_clave()
+    if usuario_clave == True:
         no_fav = request.args.get('no_fav')
         db.conectar_sqlite(
             'DELETE FROM favoritos WHERE name="{}"'.format(no_fav))
@@ -184,8 +196,8 @@ def elimina_fav_2():
 @app.route('/favoritos', methods=['GET', 'POST'])
 def obtener_favoritos():
     email = request.args.get('email')
-    usuario = comprobar_usuario()
-    if usuario == True:
+    usuario_clave = comprobar_usuario_clave()
+    if usuario_clave == True:
         db.conectar_sqlite(
             'CREATE TABLE IF NOT EXISTS new_fav (id INTEGER PRIMARY KEY AUTOINCREMENT, Fecha TEXT, País TEXT, Nombre TEXT, name TEXT, Soporte_Stop TEXT, Objetivo_1 TEXT, Objetivo_2 TEXT)')
         db.conectar_sqlite(
@@ -210,8 +222,8 @@ def obtener_favoritos():
 @app.route('/rentabilidad', methods=['GET', 'POST'])
 def rent_favoritos():
     email = request.args.get('email')
-    usuario = comprobar_usuario()
-    if usuario == True:
+    usuario_clave = comprobar_usuario_clave()
+    if usuario_clave == True:
         pais_rent = request.args.get('pais_rent')
         name_rent = request.args.get('name_rent')
         fecha_rent = request.args.get('fecha_rent')
@@ -243,8 +255,8 @@ def rent_favoritos():
 @app.route('/api', methods=['GET', 'POST'])
 def alpha():
     email = request.args.get('email')
-    usuario = comprobar_usuario()
-    if usuario == True:
+    usuario_clave = comprobar_usuario_clave()
+    if usuario_clave == True:
         consulta = request.args.get('consultar')
         if consulta != "None":
             try:
@@ -275,8 +287,11 @@ def alpha():
 
 @app.route('/salir')
 def salir():
-    usuario = comprobar_usuario()
-    if usuario == True:
+    email = request.args.get('email')
+    usuario_clave = comprobar_usuario_clave()
+    if usuario_clave == True:
+        db.conectar_sqlite(
+                    'UPDATE users SET clave = "0" WHERE user_email ="{}"'.format(email))
         session.clear()
         flash("Has salido de la sesión correctamente.", "exito")
     else:
