@@ -54,8 +54,8 @@ def comprobar_usuario_clave():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     email = request.args.get('email')
-    usuario = comprobar_usuario_clave()
-    if usuario == True:
+    usuario_clave = comprobar_usuario_clave()
+    if usuario_clave == True:
         flash("Ya has iniciado sesión.", "exito")
     else:
         return render_template("index.html")
