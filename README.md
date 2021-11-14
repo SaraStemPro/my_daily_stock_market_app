@@ -1,5 +1,6 @@
 # APLICACION_KEEPCODING
 
+
 Debemos tener descargado git y python3 en nuestro ordenador.
 Git: https://git-scm.com/downloads
 Python3: https://www.python.org/downloads/
@@ -8,9 +9,9 @@ git clone https://github.com/sdiamar/APLICACION_KEEPCODING.git
 Ahora entramos en la carpeta especificada:
 cd APLICACION_KEEPCODING
 
-Una vez dentro, desplegamos un entorno virtual:
+Una vez dentro, desplegamos un entorno virtual: 
 python -m venv env
-Y lo activamos:
+Y lo activamos:fl
 WINDOWS: env\Scripts\activate.bat
 MAC: source ./env/bin/activate
 

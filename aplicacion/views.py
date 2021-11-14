@@ -97,11 +97,14 @@ def listado_contenido():
                 flash("Tu contraseña es incorrecta, inténtalo de nuevo.", "error")
                 return render_template("index.html")
         else:
-            db.conectar_sqlite(
-                    'UPDATE acciones SET Fecha = "{}"'.format(hoy))
-            datos = db.consultarConSQL(
-                    'SELECT * FROM acciones')
-            return render_template("contenido.html", datos=datos, Fecha=hoy, email=email)
+            email = request.args.get('email')
+            usuario = comprobar_usuario()
+            if usuario == True:
+                db.conectar_sqlite(
+                        'UPDATE acciones SET Fecha = "{}"'.format(hoy))
+                datos = db.consultarConSQL(
+                        'SELECT * FROM acciones')
+                return render_template("contenido.html", datos=datos, Fecha=hoy, email=email)
     else:
         return redirect(url_for("index", email=email))
 
