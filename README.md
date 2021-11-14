@@ -123,11 +123,11 @@ Aquí se nos muestra la lista de favoritos actual. Los botones son:
 Para salir de la aplicación, dolo debemos pinchar ahí. Esto nos __cerrará la sesión__ automáticamente, y nos reenviará a la página de "Inicio de sesión", teniendo que volver a empezar si queremos interactuar de nuevo con la app.
 
 ---
-__Con esto finaliza este Readme.__
+__Aquí finaliza este Readme.__
 
 ---
 ## Agradecimientos
-No es algo común escribir esto aquí, pero como es el único documento que entregamos, no me gustaría terminar sin agradecer a los profesores de KeepCoding, Tony y Ramón, que me han ayudado a la realización de este proyecto, sobre todo Tony. Han sido muchas horas dedicadas y el apoyo de este gran profesorado ha sido clave, con unos conocimientos extraordinarios.
+No es algo común escribir esto aquí, pero como es el único documento que entregamos, no me gustaría terminar sin agradecer a los profesores de KeepCoding, Tony y Ramón, que me han ayudado a la realización de este proyecto, con mención especial a Tony. Han sido muchas horas dedicadas y el apoyo de este gran profesorado ha sido clave, con unos conocimientos extraordinarios.
 
 Agradecer también a mi familia, mi marido y el bebé que está creciendo dentro de mi, porque me lo han puesto muy fácil y me han apoyado en todo. Sin duda el amor es lo más bonito que nos llevamos.
 
