@@ -64,13 +64,6 @@ Este archivo es fundamental para la correcta ejecución de nuestra aplicación, 
 - __ADMIN_PASSWORD__: Aquí debemos escribir la contraseña de nuestro email para que la librería pueda acceder al servicio de mailing.
 - __SERVER_EMAIL__: Aquí debemos indicar el servidor de nuestro email.
 
-Si no sabes o no puedes configurar el servidor de correo, hemos generado un email y password de prueba para que puedas comprobar el funcionamiento de la app. Éstos son:
-- __ADMIN_EMAIL__=prueba@inversia500.com
-- __ADMIN_PASSWORD__=niknyz-wudNeq-viwwe0
-- __SERVER_EMAIL__=mail.inversia500.com
-
-Este email se dará de baja a finales del _mes de noviembre 2021_.
-
 #### 2. API KEY Alpha Vantage
 Para conectar la app a datos históricos de acciones, hemos generado una API KEY totalmente gratuita con el proveedor de datos __Alpha Vantage__. Esta API puedes solicitarla en el siguiente enlace:
 https://www.alphavantage.co/support/#support
@@ -125,14 +118,7 @@ Para salir de la aplicación, dolo debemos pinchar ahí. Esto nos __cerrará la 
 ---
 __Aquí finaliza este Readme.__
 
----
-## Agradecimientos
-No es algo común escribir esto aquí, pero como es el único documento que entregamos, no me gustaría terminar sin agradecer a los profesores de KeepCoding, Tony y Ramón, que me han ayudado a la realización de este proyecto, con mención especial a Tony. Han sido muchas horas dedicadas y el apoyo de este gran profesorado ha sido clave, con unos conocimientos extraordinarios.
-
-Agradecer también a mi familia, mi marido y el bebé que está creciendo dentro de mi, porque me lo han puesto muy fácil y me han apoyado en todo. Sin duda el amor es lo más bonito que nos llevamos.
-
-Ahora el siguiente paso es avanzar en la seguridad de la app para poder lanzarla al público dentro de mi blog. Así que sigue quedando trabajo por delante con mucha motivación.
-
 __Espero que os guste, ¡gracias!__
 
-__Sara Díaz__
+__Sara STEM__
+---
