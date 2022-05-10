@@ -1,5 +1,5 @@
 # MY DAILY STOCK MARKET
-###### Por Sara Díaz - Proyecto Bootcamp Cero KeepCoding
+###### Por Sara STEM
 
 > _De pequeños comienzos, surgen grandes cosas._ - Anónimo
 
